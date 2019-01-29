@@ -64,8 +64,8 @@ let blockOfCodeToPrintGuestInfo = { (guest: Guest) in
 
 let sam = Guest(name: "Sam", age: 17)
 
+//blockOfCodeToPrintGuestInfo(sam)
 blockOfCodeToPrintGuestInfo(sam)
-
 
 
 
@@ -117,6 +117,9 @@ let numbersOnlyValidator: (String) -> Bool = { (stringValue: String) in
         let aSingleString = String(aCharacter)
 
         //explain why this checks if a string contains a non-digit string value
+        /*
+            This checks to see if there is an integer hiding in the string being passed in, if not it will equal to nil and return false.
+        */
         if Int(aSingleString) == nil {
             return false
         }
