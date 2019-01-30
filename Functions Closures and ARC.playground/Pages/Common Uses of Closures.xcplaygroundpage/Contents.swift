@@ -123,10 +123,13 @@ let listOfAgesFromGuests = guestList.map { (aGuest: Guest) -> Int in
     return aGuest.age
 }
 
+print(listOfAgesFromGuests)
+
 let listOfNamesFromGuests = guestList.map { (aGuest: Guest) -> String in
     return aGuest.name
 }
 
+print(listOfNamesFromGuests)
 /*:
  ## Reduce
  This one is interesting. Reduce will, like all other HOFs, iterate through each element in the array but **the goal of reduce is to take the array and transform (or reduce) the array down into a single new type.**
@@ -167,6 +170,7 @@ let namesCombined = guestList.reduce("") { (sentence, aGuest) -> String in
     return newSentence
 }
 
+print(namesCombined)
 /*:
  ## You try!
  
@@ -176,33 +180,80 @@ let namesCombined = guestList.reduce("") { (sentence, aGuest) -> String in
 //sort these numbers
 let numbersToSort = [2, 4, 4, 2, 1, 0]
 
+let sortedNumbers = numbersToSort.sorted {
+    $0 < $1
+}
+
+print(sortedNumbers)
+
 
 //sort the guests by name
 let guestsToSort = [sam, eric, sara, charlie]
 
+let sortedGuests = guestsToSort.sorted {
+    $0.name < $1.name
+}
+
+print(sortedGuests)
 
 //sort the guests by age, but in descending order (youngest at the front of the array)
 
+let ageSortedGuests = guestsToSort.sorted {
+    $0.age < $1.age
+}
+
+print(ageSortedGuests)
 
 //filter the guests to only include guests younger than 18 years
+
+let youngGuests = guestsToSort.filter {
+    $0.age < 18
+}
+
+print(youngGuests)
 
 
 //filter the numbers to only include even numbers
 let numbersToFilter = [2, 1, 1, 5, 6, 7, 10]
 
+let filteredNumbers = numbersToFilter.filter {
+    $0 % 2 == 0
+}
+
+print(filteredNumbers)
+
 
 //map the numbers to be double their values (e.g. 5 gets mapped to 10)
 let numbersToDouble = [2, 4, 6, 8]
 
+let doubledNumbers = numbersToDouble.map {
+    $0 * 2
+}
+
+print(doubledNumbers)
 
 //map the numbers into strings
 let numbersToMapIntoStrings = [2, 4, 5, 1, 2, 2]
 
+let stringFromNumbers = numbersToMapIntoStrings.map {(num: Int) -> String in
+    let numString = String(num)
+    return numString
+    
+}
+print(stringFromNumbers)
 
 //reduce the numbers into a sum, but exclude negative numbers from the sum. Thus, your reduce closure should reduce this array to equal 10
 let numbersToSum = [-2, -5, -4, 5, -5, 5]
 
+let positiveNumbers = numbersToSum.filter {
+    $0 > 0
+}
 
+let sumOfNumbers = positiveNumbers.reduce(0) { (num1, num2) -> Int in
+    num1 + num2 
+}
+
+print(sumOfNumbers)
 /*:
  We've learned more on how to use closures in our code, specifically with higher order functions, in order to clean up our code and make it more efficient.
  
