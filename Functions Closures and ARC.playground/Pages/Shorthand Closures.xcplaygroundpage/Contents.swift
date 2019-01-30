@@ -44,6 +44,9 @@ func add(newGuest: Guest, specialRequest: (Int) -> ()) {
  Here's our `add` function being called using a trailing closure as a parameter:
  */
 let eric = Guest(name: "Eric", age: 19)
+let sam = Guest(name: "Sam", age: 17)
+let sara = Guest(name: "Sara", age: 23)
+let charlie = Guest(name: "Charlie", age: 18)
 
 add(newGuest: eric) { (guestNumber: Int) in
     print("There are \(guestNumber - 1) guests ahead of me")
@@ -91,6 +94,56 @@ add(newGuest: eric) { print("There are \($0 - 1) guests ahead of me") }
 
 
 //copy and paste your sorting closure here and rewrite it to be a single line of code
+
+//sort these numbers
+let numbersToSort = [2, 4, 4, 2, 1, 0]
+
+let sortedNumbers = numbersToSort.sorted {$0 < $1}
+print(sortedNumbers)
+
+
+//sort the guests by name
+let guestsToSort = [sam, eric, sara, charlie]
+
+let sortedGuests = guestsToSort.sorted {$0.name < $1.name}
+print(sortedGuests)
+
+//sort the guests by age, but in descending order (youngest at the front of the array)
+
+let ageSortedGuests = guestsToSort.sorted {$0.age < $1.age}
+print(ageSortedGuests)
+
+//filter the guests to only include guests younger than 18 years
+
+let youngGuests = guestsToSort.filter {$0.age < 18}
+print(youngGuests)
+
+
+//filter the numbers to only include even numbers
+let numbersToFilter = [2, 1, 1, 5, 6, 7, 10]
+
+let filteredNumbers = numbersToFilter.filter {$0 % 2 == 0}
+print(filteredNumbers)
+
+
+//map the numbers to be double their values (e.g. 5 gets mapped to 10)
+let numbersToDouble = [2, 4, 6, 8]
+
+let doubledNumbers = numbersToDouble.map {$0 * 2}
+print(doubledNumbers)
+
+//map the numbers into strings
+let numbersToMapIntoStrings = [2, 4, 5, 1, 2, 2]
+
+let stringFromNumbers = numbersToMapIntoStrings.map {String($0)}
+print(stringFromNumbers)
+
+//reduce the numbers into a sum, but exclude negative numbers from the sum. Thus, your reduce closure should reduce this array to equal 10
+let numbersToSum = [-2, -5, -4, 5, -5, 5]
+
+let positiveNumbers = numbersToSum.filter {$0 > 0}
+let sumOfNumbers = positiveNumbers.reduce(0) {$0 + $1}
+print(sumOfNumbers)
 
 
 /*:
